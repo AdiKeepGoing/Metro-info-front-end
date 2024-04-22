@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+   >
+
+    <!-- 使用垂直线性布局 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="#F5F5F5">
+
+        <!-- 标题 -->
+        <TextView
+            android:id="@+id/TitleText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:text="地铁信息查询"
+            android:gravity="center"
+            android:textStyle="italic"
+            android:textColor="#808080"
+            android:textSize="30sp" />
+
+        <!-- 按钮区域 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!-- 最优路线查询按钮 -->
+            <Button
+                android:id="@+id/btn1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_margin="10dp"
+                android:onClick="SearchOptimalRoute"
+                android:padding="6dp"
+                android:text="最优路线查询"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                android:background="@drawable/translucent_button" />
+
+            <!-- 地铁线路查询按钮 -->
+            <Button
+                android:id="@+id/btn2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_margin="10dp"
+                android:onClick="SearchLine"
+                android:padding="6dp"
+                android:text="地铁线路查询"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                android:background="@drawable/translucent_button" />
+
+        </LinearLayout>
+
+        <!-- 查询界面 -->
+        <LinearLayout
+            android:id="@+id/LL1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+            <!-- 城市名称 -->
+            <AutoCompleteTextView
+                android:id="@+id/SystemName1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:hint="城市名称"
+                android:padding="15dp"
+                android:textSize="24sp"
+                android:background="@drawable/translucent_edit"
+                android:completionThreshold="1" />
+
+            <!-- 出发站点 -->
+            <AutoCompleteTextView
+                android:id="@+id/DepartureStation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:hint="出发站点"
+                android:padding="15dp"
+                android:textSize="24sp"
+                android:background="@drawable/translucent_edit"
+                android:completionThreshold="1" />
+
+            <!-- 目标站点 -->
+            <AutoCompleteTextView
+                android:id="@+id/DestinationStation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:hint="目标站点"
+                android:padding="15dp"
+                android:textSize="24sp"
+                android:background="@drawable/translucent_edit"
+                android:completionThreshold="1" />
+
+            <!-- 查询按钮 -->
+            <Button
+                android:id="@+id/query1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:layout_gravity="end"
+                android:onClick="query1"
+                android:padding="6dp"
+                android:text="查询"
+                android:textColor="@color/cardview_light_background"
+                android:textSize="24sp"
+                android:background="@drawable/translucent_button" />
+
+        </LinearLayout>
+
+        <!-- 地铁线路查询界面 -->
+        <LinearLayout
+            android:id="@+id/LL2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <!-- 城市名称 -->
+            <AutoCompleteTextView
+                android:id="@+id/SystemName2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:hint="城市名称"
+                android:padding="15dp"
+                android:textSize="24sp"
+                android:background="@drawable/translucent_edit"
+                android:completionThreshold="1" />
+
+            <!-- 线路名称 -->
+            <AutoCompleteTextView
+                android:id="@+id/LineName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:hint="线路名称"
+                android:padding="15dp"
+                android:textSize="24sp"
+                android:background="@drawable/translucent_edit"
+                android:completionThreshold="1" />
+
+            <!-- 查询按钮 -->
+            <Button
+                android:id="@+id/query2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:layout_gravity="end"
+                android:onClick="query2"
+                android:padding="6dp"
+                android:text="查询"
+                android:textColor="@color/cardview_light_background"
+                android:textSize="24sp"
+                android:background="@drawable/translucent_button" />
+        </LinearLayout>
+
+        <!-- 查询内容展示界面，包装在 ScrollView 中 -->
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- 显示查询结果的 TextView -->
+                <TextView
+                    android:id="@+id/resultTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:padding="10dp"
+                    android:textColor="#000000"
+                    android:textSize="20sp" />
+            </LinearLayout>
+        </ScrollView>
+
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
